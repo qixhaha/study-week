@@ -1,0 +1,28 @@
+{
+  "name": "week",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qixhaha/study-week.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qixhaha/study-week/issues"
+  },
+  "homepage": "https://github.com/qixhaha/study-week#readme",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "koa-json": "^2.0.2",
+    "koa-router": "^9.4.0"
+  }
+}
