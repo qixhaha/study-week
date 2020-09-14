@@ -1,0 +1,29 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    //编译成node当前版本
+                    // 我们的API项目最终的运行环境是node，那就指定成node。这样就不会有其他环境的编译过程代码，不同的环境的过程代码不一样。
+                    "node": "current"
+                },
+                "corejs": "3", // <---  此处加个这个，就没有报错警告了
+                "useBuiltIns": "usage"
+            }
+        ]
+    ],
+    "plugins": [
+        [
+            "@babel/plugin-transform-runtime",
+            // 默认配置
+            {
+                "absoluteRuntime": false,
+                "corejs": false,
+                "helpers": true,
+                "regenerator": true,
+                "useESModules": false
+            }
+        ]
+    ]
+}
