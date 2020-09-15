@@ -1,22 +1,33 @@
-// const Koa = require('koa')
-// import '@babel/polyfill';
 import Koa from 'koa'
-// const statics = require('koa-static')
 import statics from 'koa-static'
-// const path = require('path')
 import path from 'path'
+import compose from 'koa-compose'
+import koaBody from 'koa-body'
+import jsonUtil from 'koa-json'
+import cors from '@koa/cors'
 const app = new Koa();
-
-// const router = require('./routes/routes');
-// const helmet = require('koa-helmet')
+// console.log('运行时环境变量',process.env.NODE_ENV)
 import router from './routes/routes';
 import helmet from 'koa-helmet'
-app.use(statics(path.join(__dirname, '..', 'public')))
-app.use(helmet())
+import compress from 'koa-compress'
+//是否是生产环境 因为生产环境的运行时都是production开发运行时时dev
+const isDevMode = process.env.NODE_ENV === 'production' ? false : true;
+const middleware = compose([
+    koaBody(),
+    statics(path.join(__dirname, '..', 'public')),
+    cors(),
+    jsonUtil({pretty:false,param:"pretty"}),
+    helmet(),
+    // router()
+])
+//生产环境压缩中间件
+if(!isDevMode){
+    app.use(compress())
+}
+app.use(middleware)
 app.use(router())
-
-app.listen(4000, () => {
-    console.log('running')
+app.listen(3000, () => {
+    console.log('启动成功')
 })
 
 // 'use strict';

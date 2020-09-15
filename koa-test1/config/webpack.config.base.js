@@ -1,17 +1,20 @@
+//使用cross-env设置环境变量
+
 const path = require('path');
 const nodeExternals = require('webpack-node-externals')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-console.log('webpack')
-// debugger
+const webpack  = require('webpack')
+// node命令执行时所在的文件夹目录
+const projectRoot = process.cwd()
 const webpackConfig = {
     target: 'node',
-    mode: "development",
+    // mode: "development",
     entry: {
-        server: path.join(__dirname, 'src/index.js')
+        server: path.join(projectRoot, 'src/index.js')
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.join(__dirname, './dist')
+        path: path.join(projectRoot, './dist')
     },
     module: {
         rules: [{
@@ -19,15 +22,19 @@ const webpackConfig = {
             use: {
                 loader: 'babel-loader'
             },
-            exclude: [path.join(__dirname, 'node_modules')]
+            exclude: [path.join(projectRoot, 'node_modules')]
         }]
     },
-    devtool: 'eval-source-map',
     // 不打包node_modules依赖中的node安装包但是可以使用commonjs引入
     ///相当于cdn引入的方式
     externals: [nodeExternals()],
     plugins: [
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+         // 这块设置是为了在src目录中可以（项目中使用这个环境变量，cross_env设置的是在node中使用的环境变量）
+         // node环境变量决定全局的环境变量
+        new webpack.DefinePlugin({
+            "process.env.NODE_ENV":(process.env.NODE_ENV === 'production'||process.env.NODE_ENV === 'prod')?"'production'":"'development'"
+        })
     ],
     // 启用的node模块
     node: {
