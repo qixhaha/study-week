@@ -9,12 +9,13 @@
     "webpack:debugger": "node --inspect-brk ./node_modules/webpack/bin/webpack.js  --inline --progress",
     "build": "cross-env NODE_ENV=prod webpack --config config/webpack.config.prod.js",
     "dev": "cross-env NODE_ENV=dev nodemon --exec  babel-node  --inspect ./src/index.js",
-    "clean":"rimraf dist"
+    "clean": "rimraf dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.20.0",
     "global": "^4.4.0",
     "koa": "^2.13.0",
     "koa-combine-routers": "^4.0.2",
@@ -41,6 +42,7 @@
     "koa-json": "^2.0.2",
     "nodemon": "^2.0.4",
     "rimraf": "^3.0.2",
+    "svg-captcha": "^1.4.0",
     "terser-webpack-plugin": "^4.2.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
