@@ -8,7 +8,8 @@
     "start": "nodemon --exec  babel-node  src/index.js",
     "webpack:debugger": "node --inspect-brk ./node_modules/webpack/bin/webpack.js  --inline --progress",
     "build": "cross-env NODE_ENV=prod webpack --config config/webpack.config.prod.js",
-    "dev": "cross-env NODE_ENV=dev nodemon --exec  babel-node  --inspect ./src/index.js",
+    "dev:inspect": "cross-env NODE_ENV=dev nodemon --exec  babel-node  --inspect ./src/index.js",
+    "dev": "cross-env NODE_ENV=dev nodemon --exec  babel-node ./src/index.js",
     "clean": "rimraf dist"
   },
   "keywords": [],
