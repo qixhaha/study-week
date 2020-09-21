@@ -2,25 +2,29 @@
   <div id="app">
     <div class="layui-container">
       <form class="layui-form layui-form-pane" action>
-        <div class="layui-form-item">
+        <div
+          class="layui-form-item"
+          :class="{ 'form-group--error': $v.name.$error }"
+        >
           <label class="layui-form-label">用户名</label>
-          <validation-provider
-            name="name"
-            rules="required|email"
-            v-slot="{ errors }"
-          >
-            <div class="layui-input-inline">
-              <input
-                type="text"
-                v-model="name"
-                placeholder="请输入用户名"
-                autocomplete="off"
-                class="layui-input"
-              />
-            </div>
-            <div class="error layui-form-mid">{{ errors[0] }}</div>
-          </validation-provider>
-          <!-- <div class="layui-form-mid layui-word-aux">{{ errors[0] }}</div> -->
+          <div class="layui-input-inline">
+            <input
+              type="text"
+              name="username"
+              v-model.trim="name"
+              @input="setName($event.target.value)"
+              placeholder="请输入用户名"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+          <div class="error layui-form-mid" v-if="!$v.name.required">
+            用户名不得为空
+          </div>
+          <div class="error layui-form-mid" v-if="!$v.name.email">
+            用户名输入格式错误
+          </div>
+          <!-- <div class="layui-form-mid layui-word-aux">辅助文字</div> -->
         </div>
         <div class="layui-form-item">
           <label class="layui-form-label">密码框</label>
@@ -43,23 +47,22 @@
         </div>
         <div class="layui-form-item">
           <label class="layui-form-label">验证码</label>
-          <validation-provider
-            name="code"
-            rules="required|min:4"
-            v-slot="{ errors }"
-          >
-            <div class="layui-input-inline">
-              <input
-                type="text"
-                v-model="code"
-                placeholder="请输入验证码"
-                autocomplete="off"
-                class="layui-input"
-              />
-            </div>
-            <div class="error layui-form-mid">{{ errors[0] }}</div>
-            <div class="layui-form-mid layui-word-aux" v-html="svg"></div>
-          </validation-provider>
+          <div class="layui-input-inline">
+            <input
+              type="password"
+              name="password"
+              required
+              lay-verify="required"
+              placeholder="请输入密码"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+          <div
+            class="layui-form-mid layui-word-aux svg"
+            @click="getCaptcha"
+            v-html="svg"
+          ></div>
         </div>
         <button type="button" class="layui-btn">点击登录</button>
         <a href="javascript:;" class="imooc-link">忘记密码</a>
@@ -69,22 +72,7 @@
 </template>
 <script>
 import axios from 'axios';
-import { ValidationProvider } from 'vee-validate';
-// import { email, required } from 'vee-validate/dist/rules';
-// import * as rules from 'vee-validate/dist/rules';
-import '../local/index';
-// import zh from 'vee-validate/dist/locale/zh_CN';
-// for (const rule in rules) {
-//   extend(rule, {
-//     ...rules[rule],
-//     message: zh.messages[rule]
-//   });
-// }
-// extend('required', {
-//   ...required,
-//   message: '请输入{_field_}内容'
-// });
-// extend('email', email);
+import { required, email } from 'vuelidate/lib/validators';
 export default {
   name: 'app',
   data() {
@@ -95,8 +83,17 @@ export default {
       code: ''
     };
   },
-  components: {
-    ValidationProvider
+  validations: {
+    name: {
+      required,
+      email
+    },
+    password: {
+      required
+    },
+    code: {
+      required
+    }
   },
   mounted() {
     // 获取验证码
@@ -140,7 +137,8 @@ input {
     color: #009688;
   }
 }
-.error {
-  color: red;
+.svg {
+  position: relative;
+  top: -18px;
 }
 </style>

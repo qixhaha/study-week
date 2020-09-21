@@ -8386,8 +8386,13 @@ vary@~1.1.2:
 
 vee-validate@^3.3.11:
   version "3.3.11"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/vee-validate/-/vee-validate-3.3.11.tgz#0f634845b7a8f121eeb230915faa3690befeba33"
   integrity sha512-+/M2g0VYwBDX8o7PkW/CRUxDkyudo9C/8S/Q7EoGV1duIrK2Q9W08BFcbDkkNnSAVVfknPOWkFGHeAGOgfOxCw==
+=======
+  resolved "https://registry.npm.taobao.org/vee-validate/download/vee-validate-3.3.11.tgz#0f634845b7a8f121eeb230915faa3690befeba33"
+  integrity sha1-D2NIRbeo8SHusjCRX6o2kL7+ujM=
+>>>>>>> 30c4ff9cb089730afaf873771ff9b174ab761085
 
 vendors@^1.0.0:
   version "1.0.4"
@@ -8424,6 +8429,11 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.npmjs.org/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
+
+vue-i18n@^8.21.1:
+  version "8.21.1"
+  resolved "https://registry.npm.taobao.org/vue-i18n/download/vue-i18n-8.21.1.tgz?cache=0&sync_timestamp=1600339745225&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-i18n%2Fdownload%2Fvue-i18n-8.21.1.tgz#afa8e6390a5de3b65bd17533c4269181f86f1d61"
+  integrity sha1-r6jmOQpd47Zb0XUzxCaRgfhvHWE=
 
 "vue-loader-v16@npm:vue-loader@^16.0.0-beta.7":
   version "16.0.0-beta.7"
