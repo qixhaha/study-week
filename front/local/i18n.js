@@ -8,6 +8,7 @@ Vue.use(VueI18n);
 zh.messages.email = '请输入一个有效的邮箱格式';
 zh.messages.required = '请输入{_field_}';
 zh.messages.min = '{_field_}不符合最小长度要求{length}';
+zh.messages.max = '{_field_}不符合最大长度要求{length}';
 
 const i18n = new VueI18n({
   locale: 'zh',
@@ -17,7 +18,8 @@ const i18n = new VueI18n({
       fields: {
         name: '账号',
         password: '密码',
-        code: '验证码'
+        code: '验证码',
+        username: '昵称'
       },
       // 传递本地化文本
       validation: zh.messages
