@@ -99,8 +99,11 @@ export default {
   name: 'login',
   data() {
     return {
+      // 用户名
       name: '',
+      // 密码
       password: '',
+      // 验证码
       code: '',
       svg: ''
     };

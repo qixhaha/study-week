@@ -83,8 +83,11 @@ export default {
   name: 'forget',
   data() {
     return {
+      // 用户名
       name: '',
+      // svg路径
       svg: '',
+      // 验证码
       code: ''
     };
   },
@@ -92,6 +95,7 @@ export default {
     ValidationProvider
   },
   mounted() {
+    // 获取验证码
     this._getCode();
   },
   methods: {

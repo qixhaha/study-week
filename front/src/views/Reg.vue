@@ -175,6 +175,7 @@ export default {
     };
   },
   mounted() {
+    // 获取验证码
     this._getCode();
   },
   methods: {
