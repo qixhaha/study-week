@@ -55,11 +55,7 @@
                       />
                     </div>
                     <div class="error layui-form-mid">{{ errors[0] }}</div>
-                    <div
-                      @click="_getCode"
-                      class="layui-form-mid  svg layui-word-aux"
-                      v-html="svg"
-                    ></div>
+                    <code-com />
                   </validation-provider>
                 </div>
                 <div class="layui-form-item">
@@ -77,7 +73,7 @@
 </template>
 
 <script>
-import { getCode } from '@/api/login';
+import CodeCom from '../components/Code';
 import { ValidationProvider } from 'vee-validate';
 export default {
   name: 'forget',
@@ -92,21 +88,8 @@ export default {
     };
   },
   components: {
-    ValidationProvider
-  },
-  mounted() {
-    // 获取验证码
-    this._getCode();
-  },
-  methods: {
-    _getCode() {
-      getCode().then(res => {
-        // console.log(res);
-        if (res.code === 200) {
-          this.svg = res.msg;
-        }
-      });
-    }
+    ValidationProvider,
+    CodeCom
   }
 };
 </script>

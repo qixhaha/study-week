@@ -115,11 +115,12 @@
                       />
                     </div>
                     <div class="error layui-form-mid">{{ errors[0] }}</div>
-                    <div
+                    <!-- <div
                       @click="_getCode"
                       class="layui-form-mid  svg layui-word-aux"
                       v-html="svg"
-                    ></div>
+                    ></div> -->
+                    <code-com />
                   </validation-provider>
                 </div>
                 <div class="layui-form-item">
@@ -153,11 +154,12 @@
 
 <script>
 import { ValidationProvider } from 'vee-validate';
-import { getCode } from '@/api/login';
+import CodeCom from '../components/Code';
 export default {
   name: 'reg',
   components: {
-    ValidationProvider
+    ValidationProvider,
+    CodeCom
   },
   data() {
     return {
@@ -173,20 +175,6 @@ export default {
       code: '',
       svg: ''
     };
-  },
-  mounted() {
-    // 获取验证码
-    this._getCode();
-  },
-  methods: {
-    _getCode() {
-      getCode().then(res => {
-        // console.log(res);
-        if (res.code === 200) {
-          this.svg = res.msg;
-        }
-      });
-    }
   }
 };
 </script>

@@ -72,11 +72,12 @@
                       />
                     </div>
                     <div class="error layui-form-mid">{{ errors[0] }}</div>
-                    <div
+                    <!-- <div
                       @click="_getCode"
                       class="layui-form-mid  svg layui-word-aux"
                       v-html="svg"
-                    ></div>
+                    ></div> -->
+                    <code-com />
                   </validation-provider>
                 </div>
                 <button type="button" class="layui-btn">点击登录</button>
@@ -93,8 +94,8 @@
 </template>
 
 <script>
-import { getCode } from '@/api/login';
 import { ValidationProvider } from 'vee-validate';
+import CodeCom from '../components/Code';
 export default {
   name: 'login',
   data() {
@@ -104,25 +105,12 @@ export default {
       // 密码
       password: '',
       // 验证码
-      code: '',
-      svg: ''
+      code: ''
     };
   },
   components: {
-    ValidationProvider
-  },
-  mounted() {
-    this._getCode();
-  },
-  methods: {
-    _getCode() {
-      getCode().then(res => {
-        // console.log(res);
-        if (res.code === 200) {
-          this.svg = res.msg;
-        }
-      });
-    }
+    ValidationProvider,
+    CodeCom
   }
 };
 </script>
