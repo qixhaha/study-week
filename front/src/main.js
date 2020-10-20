@@ -6,7 +6,9 @@ import store from './store';
 // Vue.use(Vuelidate);
 import axios from 'axios';
 import '../local/index';
+import PuzzleVerification from 'vue-puzzle-verification';
 Vue.config.productionTip = false;
+Vue.use(PuzzleVerification);
 axios.defaults.baseURL =
   process.env.NODE_ENV !== 'production'
     ? 'http://localhost:3000'
