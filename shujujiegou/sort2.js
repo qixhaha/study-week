@@ -7,7 +7,10 @@ const mergeArr = (left, right) => {
   // 左右元素指针(当前存放元素的指针)
   let leftIndex = 0
   let rightIndex = 0
-  while (left.length > leftIndex && right.length > rightIndex) {}
+  while (left.length > leftIndex && right.length > rightIndex) {
+    if (left[leftIndex]) {
+    }
+  }
 }
 const mergeSort = (arr) => {
   // 当任意数组分解到只有一个的时候返回

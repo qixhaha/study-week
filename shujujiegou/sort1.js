@@ -34,10 +34,13 @@ const insertionSort = (arr) => {
   if (arr.length <= 1) {
     return
   }
+  // 默认第一个是排序好的 然后从第二个开始和前面排好序的相比较
   for (let i = 1; i < arr.length; i++) {
     let temp = arr[i]
     let j = i - 1
+    // 倒序比较
     for (j; j >= 0; --j) {
+      // 如果前面的值大于当前遍历到的值,那么前面的值赋值给后面的值
       if (arr[j] > temp) {
         // 没有跳出循环 --j还执行
         arr[j + 1] = arr[j]
