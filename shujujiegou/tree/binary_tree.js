@@ -49,12 +49,22 @@ class SearchTree {
    * ③第三种:当前节点有左右叶子节点，将该节点的右节点遍历其中最小的节点（最小的叶子点），替换到改节点上面
    * @param {Number}} num
    */
-  remove(num) {
-    let point = this.root
-    let parent = null
-    let tree = this
-    let res = null
-    while (true) {}
+  remove(data) {
+    let p = this.root // p指向要删除的节点 初始化指向根节点
+    let pp = null // pp 指向的是p的父节点
+    while (p != null && p.value != data) {
+      pp = p
+      if (data > p.data) {
+        p = p.right
+      } else {
+        p = p.left
+      }
+    }
+    if (p == null) {
+      // 没有找到
+      return
+    }
+    this.delMethod(p, pp)
   }
   // 删除节点的方法
   /**
@@ -154,4 +164,69 @@ class SearchTree {
       return point
     }
   }
+  // 中序遍历
+  print() {
+    let point = this.root
+    if (point) {
+      printAll(point.left)
+      console.log(point.value)
+      printAll(point.right)
+    }
+    function printAll(point) {
+      if (point == null) {
+        return
+      }
+      printAll(point.left)
+      console.log(point.value)
+      printAll(point.right)
+    }
+  }
 }
+
+function baseTest() {
+  let searchTree = new SearchTree()
+  console.log('step 1:')
+  searchTree.insert(4)
+  searchTree.insert(1)
+  searchTree.insert(2)
+  searchTree.insert(5)
+
+  searchTree.print() //1 2 4 5
+  console.log('step 2:')
+  console.log('5', searchTree.find(5)) //5
+  console.log('null:', searchTree.find(6)) //null
+  searchTree.insert(5)
+  searchTree.insert(5)
+  console.log('5,5,5:', searchTree.find(5))
+}
+//删除测试
+function delTest() {
+  let searchTree = new SearchTree()
+  console.log('add: 4 1 2 5 ')
+  searchTree.insert(4)
+  searchTree.insert(1)
+  searchTree.insert(2)
+  searchTree.insert(5)
+  searchTree.print() //1 2 4 5
+  //console.log('del 3 null:', searchTree.remove(3));
+  console.log('del 1 true:', searchTree.remove(1))
+  // console.log('print 2 4 5:')
+  // searchTree.print();
+  // console.log('del 4 root true:', searchTree.remove(4));
+  // console.log('print 2 5:')
+  // searchTree.print();
+  // console.log('add: 3 7 1 5 5 5 ')
+  // searchTree.insert(3);
+  // searchTree.insert(7);
+  // searchTree.insert(1);
+  // searchTree.insert(5);
+  // searchTree.insert(5);
+  // searchTree.insert(5);
+  // console.log('print: 1 2 3 5 5 5 5 7 ')
+  // searchTree.print();
+  // console.log('del 5 true:', searchTree.remove(5));
+  // console.log('print: 1 2 3 7 ')
+  // searchTree.print();
+}
+
+delTest()
